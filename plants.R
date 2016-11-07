@@ -60,7 +60,7 @@ setup.plants <- function (repro, survive, c_mat, names=NULL){
     names <- letters [seq_along(repro500)]
   if (length(repro) !=length (survive))
   stop ("Reproduction and survival parameters needed for all species")
-  if (length(repro) !=length (c_mat))
+  if (length(repro) !=nrow (c_mat))
   stop ("Reproduction and comp parameters needed for all species")
   if (ncol(c_mat) != nrow(c_mat))
   stop ("comp needs row and column to match")
