@@ -51,24 +51,27 @@ c_mat[3,3] <- .5
 
 #survive = probability (0-1)
 
-survival_plants <- c(.2,.3,.4)
+survive_plants <- c(.2,.3,.4)
 
 #plant things
 
-setup.plants <- function (repro, survive, c_mat, names=NULL){
+setup.plants <- function (repro, survive, comp.mat, names=NULL){
   if(is.null (names))
-    names <- letters [seq_along(repro500)]
+    names <- letters [seq_along(repro)]
   if (length(repro) !=length (survive))
   stop ("Reproduction and survival parameters needed for all species")
-  if (length(repro) !=nrow (c_mat))
+  if (length(repro) !=nrow (comp.mat))
   stop ("Reproduction and comp parameters needed for all species")
-  if (ncol(c_mat) != nrow(c_mat))
+  if (ncol(comp.mat) != nrow(comp.mat))
   stop ("comp needs row and column to match")
   repro <- setNames (repro,names)
-  return(list(repro=repro, survival=survival, comp.mat=comp.mat, names=names))
+  return(list(repro=repro, survive=survive, comp.mat=comp.mat, names=names))
 }
 
-setup.plants(repro500, survival_plants, c_mat)
+setup.plants(repro500, survive_plants, c_mat)
+
+
+####
 
 survive <- function (cell, info){
   if(runif(1)) <- info$survive[plant])
