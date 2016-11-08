@@ -1,21 +1,53 @@
 # R world is made up of grid cells, the elements of a matrix
 #basis = terrain, will be a numeric matrix whose elements represent height
-#make a square matrix with odd dimesnsions:
-
+#make a square matrix with odd dimensions:
 mat_function <- function (x, y){
-  mat <- matrix(ncol<-x, nrow<-y)
+  mat <- matrix(ncol=x, nrow=y)
   return(mat)
 }
 
 mat <- mat_function(11,11)
 x <- 11
 y <- 11
-
-
 #pick a starting height for four courners
-  #repeat Diamond step, square step until matrix is filled with values
+# need to create the corners of the matrix
+up_left <- round (rnorm (1, mean=4), digits=1)
+up_right <-round (rnorm (1, mean=4), digits=1)
+Lower_left <-round (rnorm (1, mean=4), digits=1)
+Lower_right <-round (rnorm (1, mean=4), digits=1)
 
-# diamond_step <- 
+#add values
+mat[1,1] <- up_left
+mat[1,y] <- up_right
+mat[x,1] <- Lower_left
+mat[x,y] <- Lower_right
+
+mat
+# have corners, everythihgn else is NA
+
+#repeat Diamond step, square step until matrix is filled with values
+
+diamond_step <- function (mat){
+  x <- ncol(mat)
+  y <- nrow(mat)
+  up_l <- mat [1,1]
+  up_r <- mat [1,y]
+  low_left <- mat [x,1]
+  low_right <- mat [x,y]
+  mean_vector <- c(up_l, up_r, low_left, low_right)
+  mean_corners <- mean(mean_vector)
+  median_x <- median(1:x)
+  median_y <- median (1:y)
+  mat[median_y, median_x] <- mean_corners
+  return(mat)
+}
+
+mat <- diamond_step(mat)
+mat
+#Yay!  Now we also have one value in the middle!
+
+
+
 # square_step <- 
 # diamond_square_step <- #needs to call both former functions in turn until the matrix
 #is filled up, needs to initialize everything - seed w/starting values, create matrix, etc. 
