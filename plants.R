@@ -89,6 +89,10 @@ survive <- function (cell, info){
     survive_plants <- 0
   if(runif(1)) <- info$survive[plant]
 }
+#If NA = water, return NA for survival
+#If cell is empty return ""
+#If cell has a plant, run survival, return
+#"a""b""c" if survives, or "" if no survival
 
 plant_time <- function (plants, terrain, info){
   survive <- function (plant, info){

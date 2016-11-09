@@ -51,31 +51,18 @@ mat
 
 
 # square_step <- 
-median_x <- median(1:x)
-median_y <- median (1:y)
+
 
 square_step <- function (mat){
   x <- ncol(mat)
-  y <- nrow(mat)
-  centerpoint <- mat[median_y, median_x]
-  up_up <- mat [median_x,y]
-  down_down <- mat [median_x,1]
-  left_left <- mat [1,median_y]
-  right_right <- mat [x,median_y]
-  up_l <- mat [1,1]
-  up_r <- mat [1,y]
-  low_left <- mat [x,1]
-  low_right <- mat [x,y]
-  mean_vector <- c(up_l, up_r, low_left, low_right)
-  mean_corners <- mean(mean_vector)
-  mean_vector.sq <- c(up_up, down_down, left_left, right_right)
-  mean_corners.sq <- mean(mean_vector.sq)
-  #need to tell it now what to put in the square places I have defined now
-  mat[centerpoint] <- mean_corners.sq
-  mat[left_left] <- mean(c(up_l,low_left,centerpoint))
-  mat[right_right] <- mean(c(up_r,low_right,centerpoint))
-  mat[up_up] <- mean(c(up_l,up_r,centerpoint))
-  mat[down_down] <- mean(c(low_right,low_left,centerpoint))
+  y <- nrow(mat) 
+  median_x <- median(1:x)
+  median_y <- median (1:y)
+  mat[median_y, median_x] <- mean(c(mat[median_x,y], mat[median_x,1], mat[1,median_y], mat[median_x,y]))
+  mat[1,median_y] <- mean(c(mat [1,1], mat [x,1],mat[median_y, median_x]))
+  mat[x,median_y] <- mean(c(mat [1,y],mat [1,y],mat[median_y, median_x]))
+  mat[median_x,y] <- mean(c(mat [x,y],mat [1,y],mat[median_y, median_x]))
+  mat[median_x,1] <- mean(c(mat [x,y],mat [x,1],mat[median_y, median_x]))
   return(mat)
 }
 
