@@ -68,13 +68,26 @@ setup.plants <- function (repro, survive, comp.mat, names=NULL){
   return(list(repro=repro, survive=survive, comp.mat=comp.mat, names=names))
 }
 
-setup.plants(repro500, survive_plants, c_mat)
+info <- setup.plants(repro500, survive_plants, c_mat)
 
 
-######
+######need to define cell, so will make a new terrain matrix of numbers and NA
+cell_mat <- mat_function(3,3)
+cell_mat[1,1] <- 5.32
+cell_mat[2,1] <- 0.73
+cell_mat[3,1] <- NA
+cell_mat[1,2] <- 0.90
+cell_mat[1,3] <- 2.72
+cell_mat[2,3] <- 1.37
+cell_mat[3,2] <- NA
+cell_mat[2,2] <- 0.59
+cell_mat[3,3] <- 5.05
+cell_mat
 
 survive <- function (cell, info){
-  if(runif(1)) <- info$survive[plant])
+  if(is.NA(cell))
+    survive_plants <- 0
+  if(runif(1)) <- info$survive[plant]
 }
 
 plant_time <- function (plants, terrain, info){
