@@ -71,7 +71,7 @@ setup.plants <- function (repro, survive, comp.mat, names=NULL){
 setup.plants(repro500, survive_plants, c_mat)
 
 
-####
+######
 
 survive <- function (cell, info){
   if(runif(1)) <- info$survive[plant])
