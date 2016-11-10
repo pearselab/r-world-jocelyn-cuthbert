@@ -72,7 +72,7 @@ info <- setup.plants(repro500, survive_plants, c_mat)
 
 
 ######need to define cell, so will make a new terrain matrix of numbers and NA
-cell_mat <- mat_function(3,3)
+special_terrain <- mat_function(3,3)
 cell_mat[1,1] <- 5.32
 cell_mat[2,1] <- 0.73
 cell_mat[3,1] <- NA
@@ -84,17 +84,33 @@ cell_mat[2,2] <- 0.59
 cell_mat[3,3] <- 5.05
 cell_mat
 
-survive <- function (cell, info){
-  if(is.NA(cell))
-    survive_plants <- 0
-  if(runif(1)) <- info$survive[plant]
+survive <- function (cell, info, name){
+  if(is.na(cell))
+    return(na)
+  if((cell)=='')
+    return(' ')
+  if(runif(1) <= info$survive[name])
+    return(name)
+  if(runif(1) >= info$survive[name])
+    return(' ')
+}
+#too loop through matrix
+  for (i in 1:nrow(plants)){
+    for(j in 1:ncol(plants)){
+      plants_happy_home <- survive (plants[i,j], info)
+      return (new.plant.matrix)
+    }
+  }
+  #probably will not need next part until later but I tried it anyway#
+  if("a","b","c"(cell))
+    return(c_mat)
 }
 #If NA = water, return NA for survival
 #If cell is empty return ""
 #If cell has a plant, run survival, return
 #"a""b""c" if survives, or "" if no survival
 
-plant_time <- function (plants, terrain, info){
+plant_time <- function (plants, special_terrain, info){
   survive <- function (plant, info){
     #survive function
   }
@@ -102,11 +118,20 @@ plant_time <- function (plants, terrain, info){
   return (new.plants.matrix)
 }
 
-plants <- array ("", dim=c(dim(terrain), timeteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
+run_plants_run <- function (special_terrain, num.timesteps, info){
+  plants <- array ("", dim=c(dim(special_terrain), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
+  for (i in seq_len(dim(plants)[3]))
+    plants [,,i][is.na(special_terrain)] <- NA
+      for(i in seq_len(dim(plants)[3]))
+        print(k)
+        plants[i,j,k] <- plant.time(plants[,,k], info)
+}
+
+plants <- array ("", dim=c(dim(special_terrain), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
 for (i in seq_len(dim(plants)[3]))
-  plants [,,i][is.na(terrain)] <- NA
+  plants [,,i][is.na(special_terrain)] <- NA
 #Fills in whatever is NA as water
 
-
+rpt <- run_plants_run(special_terrain, timesteps, info)
 
   

@@ -43,7 +43,6 @@ diamond_step <- function (mat){
   mat[median_y, median_x] <- mean_corners
   return(mat)
 }
-
 mat <- diamond_step(mat)
 mat
 #Yay!  Now we also have one value in the middle!
@@ -59,10 +58,10 @@ square_step <- function (mat){
   median_x <- median(1:x)
   median_y <- median (1:y)
   mat[median_y, median_x] <- mean(c(mat[median_x,y], mat[median_x,1], mat[1,median_y], mat[median_x,y]))
-  mat[1,median_y] <- mean(c(mat [1,1], mat [x,1],mat[median_y, median_x]))
-  mat[x,median_y] <- mean(c(mat [1,y],mat [1,y],mat[median_y, median_x]))
-  mat[median_x,y] <- mean(c(mat [x,y],mat [1,y],mat[median_y, median_x]))
-  mat[median_x,1] <- mean(c(mat [x,y],mat [x,1],mat[median_y, median_x]))
+  mat[1,median_y] <- mean(c(mat [1,1], mat [x,1],mat[median_y, median_x]), na.rm=TRUE)
+  mat[x,median_y] <- mean(c(mat [1,y],mat [1,y],mat[median_y, median_x]), na.rm=TRUE)
+  mat[median_x,y] <- mean(c(mat [x,y],mat [1,y],mat[median_y, median_x]), na.rm=TRUE)
+  mat[median_x,1] <- mean(c(mat [x,y],mat [x,1],mat[median_y, median_x]), na.rm=TRUE)
   return(mat)
 }
 
@@ -73,6 +72,34 @@ mat
 #is filled up, needs to initialize everything - seed w/starting values, create matrix, etc. 
 #should step through matrix, affecting smaller and smaller chunks
 #Add a little bit of noise with rnorm that decreases with each iteration (sd argument)
+
+diamond_square_step <- function (mat){
+  mat_function <- function (x, y){
+    mat <- matrix(ncol=x, nrow=y)
+    return(mat)
+  }
+  mat <- mat_function(9,9)
+  x <- ncol(mat)
+  y <- nrow(mat) 
+  median_x <- median(1:x)
+  median_y <- median (1:y)
+  mean_vector <- c(mat [1,1], mat [1,y], mat [x,1], mat [x,y])
+  mean_corners <- mean(mean_vector)
+  mat[median_y, median_x] <- mean(c(mat[median_x,y], mat[median_x,1], mat[1,median_y], mat[median_x,y]))
+  mat[1,median_y] <- mean(c(mat [1,1], mat [x,1],mat[median_y, median_x]), na.rm=TRUE)
+  mat[x,median_y] <- mean(c(mat [1,y],mat [1,y],mat[median_y, median_x]), na.rm=TRUE)
+  mat[median_x,y] <- mean(c(mat [x,y],mat [1,y],mat[median_y, median_x]), na.rm=TRUE)
+  mat[median_x,1] <- mean(c(mat [x,y],mat [x,1],mat[median_y, median_x]), na.rm=TRUE)
+  return(mat)
+}
+# doesn't work even once - need to make it create matrix, run diamond step, run square step, 
+#then need to figure out how to loop it for smaller and smaller squares,
+#not just one big outside square
+
+mat <- diamond_square_step
+
+mat
+
 
 #write a function called make_terrain that will act as a wrapper for the diamond step algorithm
 #This should be adding in water as well (height values of NA)
