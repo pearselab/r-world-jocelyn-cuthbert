@@ -73,7 +73,7 @@ mat
 #should step through matrix, affecting smaller and smaller chunks
 #Add a little bit of noise with rnorm that decreases with each iteration (sd argument)
 
-diamond_square_step <- function (mat){
+diamond_square_step.fail <- function (mat){
   mat_function <- function (x, y){
     mat <- matrix(ncol=x, nrow=y)
     return(mat)
@@ -96,7 +96,7 @@ diamond_square_step <- function (mat){
 #then need to figure out how to loop it for smaller and smaller squares,
 #not just one big outside square
 
-mat <- diamond_square_step
+mat <- diamond_square_step.fail (mat)
 
 mat
 
@@ -104,6 +104,13 @@ mat
 #write a function called make_terrain that will act as a wrapper for the diamond step algorithm
 #This should be adding in water as well (height values of NA)
 
+Diamond_square_step_dont_fail <- function(mat){
+  mat <- mat_function (5,5)
+  mat <- diamond_step
+  mat <- square_step
+}
+mat <- Diamond_square_step_dont_fail (mat)
 
+mat
 
 
