@@ -72,17 +72,17 @@ info <- setup.plants(repro500, survive_plants, c_mat)
 
 
 ######need to define cell, so will make a new terrain matrix of numbers and NA
-cell_mat <- mat_function(3,3)
-cell_mat[1,1] <- 5.32
-cell_mat[2,1] <- 0.73
-cell_mat[3,1] <- NA
-cell_mat[1,2] <- 0.90
-cell_mat[1,3] <- 2.72
-cell_mat[2,3] <- 1.37
-cell_mat[3,2] <- NA
-cell_mat[2,2] <- 0.59
-cell_mat[3,3] <- 5.05
-cell_mat
+t_mat <- mat_function(3,3)
+t_mat[1,1] <- 5.32
+t_mat[2,1] <- 0.73
+t_mat[3,1] <- NA
+t_mat[1,2] <- 0.90
+t_mat[1,3] <- 2.72
+t_mat[2,3] <- 1.37
+t_mat[3,2] <- NA
+t_mat[2,2] <- 0.59
+t_mat[3,3] <- 5.05
+t_mat
 
 survive <- function (cell, info, name){
   if(is.na(cell))
@@ -110,7 +110,7 @@ survive <- function (cell, info, name){
 #If cell has a plant, run survival, return
 #"a""b""c" if survives, or "" if no survival
 
-plant_time <- function (plants, special_terrain, info){
+plant_time <- function (plants, t_mat, info){
   survive <- function (plant, info){
     #survive function
   }

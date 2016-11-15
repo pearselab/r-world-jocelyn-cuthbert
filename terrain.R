@@ -1,5 +1,21 @@
 # R world is made up of grid cells, the elements of a matrix
 #basis = terrain, will be a numeric matrix whose elements represent height
+#pick a starting height for four courners
+# need to create the corners of the matrix
+up_left <- round (rnorm (1, mean=4), digits=1)
+up_right <-round (rnorm (1, mean=4), digits=1)
+Lower_left <-round (rnorm (1, mean=4), digits=1)
+Lower_right <-round (rnorm (1, mean=4), digits=1)
+
+#add values
+mat[1,1] <- up_left
+mat[1,y] <- up_right
+mat[x,1] <- Lower_left
+mat[x,y] <- Lower_right
+
+mat
+# have corners, everythihgn else is NA
+
 #make a square matrix with odd dimensions:
 mat_function <- function (x, y){
   mat <- matrix(ncol=x, nrow=y)
@@ -20,21 +36,7 @@ y <- 5
 mat
 #x <- n^2+1 , so 5, 9
 #y <- n^2+1 , so 5, 9
-#pick a starting height for four courners
-# need to create the corners of the matrix
-up_left <- round (rnorm (1, mean=4), digits=1)
-up_right <-round (rnorm (1, mean=4), digits=1)
-Lower_left <-round (rnorm (1, mean=4), digits=1)
-Lower_right <-round (rnorm (1, mean=4), digits=1)
 
-#add values
-mat[1,1] <- up_left
-mat[1,y] <- up_right
-mat[x,1] <- Lower_left
-mat[x,y] <- Lower_right
-
-mat
-# have corners, everythihgn else is NA
 
 #repeat Diamond step, square step until matrix is filled with values
 
