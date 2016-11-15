@@ -139,14 +139,14 @@ mat
 #I want it to look at the matrix I have entered and work accordingly
 #I don't know how to do that for the by piece of it - I want to change the by not manually, but based on what the matrix size is
 
-Diamond_square_step_dont_fail <- function(mat){
-  mat <- mat_function (5,5)
+Diamond_square_step_dont_fail <- function(mat,x,y){
+  mat <- mat_function (x,y)
   mat <- square_step (mat)
   mat <- diamond_step (mat)
-  for (i in seq(from=1, to=(ncol(mat)-1), by=2)){
+  for (i in seq(from=1, to=(ncol(mat)-2), by=2)){
     mat[i:(i+2), i:(i+2)] <- square_step(mat[i:(i+2), i:(i+2)])
     mat[i:(i+2), i:(i+2)] <- diamond_step(mat[i: (i+2), i:(i+2)])
-    for (j in seq(from=1), to=(nrow(mat)-1, by=2)){
+    for (j in seq(from=1, to=(nrow(mat)-2), by=2)){
     mat[j:(j+2), i:(i+2)] <- square_step(mat[j:(j+2), i:i(i+2)])
     mat[j:(j+2), i:(i+2)] <- diamond_step(mat[j:(j+2), i:(i+2)])
     }
@@ -154,7 +154,7 @@ Diamond_square_step_dont_fail <- function(mat){
   return(mat)
 }
 
-mat <- Diamond_square_step_dont_fail (mat)
+mat <- Diamond_square_step_dont_fail (mat, x=5,y=5)
 
 mat
 

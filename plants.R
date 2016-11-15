@@ -2,9 +2,9 @@
 #plants of 2 or more species
 #not more than one individual in one cell
 #survive or die over time
-#survive =repro.  need to replace each time in the matrix - not just one single column, 
+#survive =repro.  need to replace each time in the matrix - not just one single column,
 #but the rows and columns around that cell/entire matrix, as they disperse into area around them
-#competition context - need to have two species fight to survive in the area 
+#competition context - need to have two species fight to survive in the area
 #which species make it into each slot
 #wrapper for species properties
 
@@ -16,13 +16,13 @@ mat_function <- function (x, y){
     mat <- matrix(ncol=x, nrow=y)
     return(mat)
 }
-  
+
 mat <- mat_function(10,10)
 
 p_mat <- mat_function(10,10)
 p_mat <- replicate(10,rnorm(10,rnorm(1),runif(1, min=0, max=1)))
 plants_happy_home <- abs(p_mat)
-  
+
 
 #Repro = vector, same length as matrix, prob. a member of that species will reproduce
 repro <- numeric (length = 3)
@@ -36,7 +36,7 @@ repro1 <- append(.3,.2,.4)
 repro500 <- c(.3,.2,.4)
 
 #comp.mat = dim = # plant species, prob. species will survive when in comes into contact with
-#another species. 
+#another species.
 
 c_mat <- mat_function(3,3)
 c_mat[1,1] <- .5
@@ -72,7 +72,7 @@ info <- setup.plants(repro500, survive_plants, c_mat)
 
 
 ######need to define cell, so will make a new terrain matrix of numbers and NA
-special_terrain <- mat_function(3,3)
+cell_mat <- mat_function(3,3)
 cell_mat[1,1] <- 5.32
 cell_mat[2,1] <- 0.73
 cell_mat[3,1] <- NA
@@ -114,7 +114,7 @@ plant_time <- function (plants, special_terrain, info){
   survive <- function (plant, info){
     #survive function
   }
-  #looping et al. 
+  #looping et al.
   return (new.plants.matrix)
 }
 
@@ -134,4 +134,3 @@ for (i in seq_len(dim(plants)[3]))
 
 rpt <- run_plants_run(special_terrain, timesteps, info)
 
-  
