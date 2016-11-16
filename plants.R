@@ -118,19 +118,21 @@ plant_time <- function (plants, t_mat, info){
   return (new.plants.matrix)
 }
 
-run_plants_run <- function (special_terrain, num.timesteps, info){
-  plants <- array ("", dim=c(dim(special_terrain), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
+run_plants_run <- function (t_mat, num.timesteps, info){
+  plants <- array ("", dim=c(dim(t_mat), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
   for (i in seq_len(dim(plants)[3]))
-    plants [,,i][is.na(special_terrain)] <- NA
+    plants [,,i][is.na(t_mat)] <- NA
       for(i in seq_len(dim(plants)[3]))
         print(k)
         plants[i,j,k] <- plant.time(plants[,,k], info)
 }
 
-plants <- array ("", dim=c(dim(special_terrain), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
+plants <- array ("", dim=c(dim(t_mat), timesteps +1)) #timestep +1 allows us to record the old timestep in order to keep track of where in time we are
 for (i in seq_len(dim(plants)[3]))
-  plants [,,i][is.na(special_terrain)] <- NA
+  plants [,,i][is.na(t_mat)] <- NA
 #Fills in whatever is NA as water
 
-rpt <- run_plants_run(special_terrain, timesteps, info)
+rpt <- run_plants_run(t_mat, timesteps, info)
+
+timesteps <-5
 
